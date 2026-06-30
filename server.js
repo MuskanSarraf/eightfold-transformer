@@ -1,22 +1,14 @@
-const normalizeCandidate = require("./src/normalizers/normalizeCandidate");
+const express = require('express');
+const cors = require('cors');
+const profileRoutes = require('./src/routes/profileRoutes');
 
-const candidate = {
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-  personal:{
-      phones:[
-          "9876543210"
-      ],
-      location:{
-          country:"India"
-      }
-  },
+app.use('/api', profileRoutes);
 
-  skills:[
-      "ReactJS",
-      "Node",
-      "javascript"
-  ]
-
-};
-
-console.log(normalizeCandidate(candidate));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

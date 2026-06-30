@@ -1,35 +1,26 @@
 const createEmptyCandidate = () => ({
-  personal: {
-    fullName: null,
-    emails: [],
-    phones: [],
-    location: {
-      city: null,
-      country: null
-    }
+  candidate_id: null,
+  full_name: null,
+  emails: [],
+  phones: [],
+  location: {
+    city: null,
+    region: null,
+    country: null
   },
-
-  professional: {
-    headline: null,
-    currentCompany: null,
-    designation: null,
-    experience: []
-  },
-
-  education: [],
-
-  skills: [],
-
-  social: {
+  links: {
+    linkedin: null,
     github: null,
-    linkedin: null
+    portfolio: null,
+    other: []
   },
-
-  metadata: {
-    confidence: {},
-    provenance: {},
-    sources: []
-  }
+  headline: null,
+  years_experience: null,
+  skills: [], // { name, confidence, sources: [] }
+  experience: [], // { company, title, start, end, summary }
+  education: [], // { institution, degree, field, end_year }
+  provenance: [], // { field, source, method }
+  overall_confidence: 0
 });
 
 module.exports = {

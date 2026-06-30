@@ -1,20 +1,12 @@
 const { buildCandidate } = require("../builders/candidateBuilder");
 
-const candidate = buildCandidate({
-  personal: {
-    fullName: row["Full Name"],
+function parseCsvRow(row) {
+  return buildCandidate({
+    full_name: row["Full Name"] || row["Name"] || "",
     emails: row.Email ? [row.Email] : [],
     phones: row.Phone ? [row.Phone] : [],
-  },
+    experience: row.Company ? [{ company: row.Company, title: row.Designation }] : []
+  }, "csv");
+}
 
-  professional: {
-    currentCompany: row.Company,
-    designation: row.Designation,
-  },
-
-  metadata: {
-    sources: ["csv"],
-  },
-});
-
-candidates.push(candidate);
+module.exports = parseCsvRow;
